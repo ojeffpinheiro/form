@@ -1,26 +1,42 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
+
+import { auth } from "../../services/firebaseConfig";
 
 import "./styles.scss";
 import imgIllustration from "../../assets/img1.png";
 
 export function SignIn() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
+  const navigate = useNavigate();
 
-  const handleSignIn = (e: React.FormEvent) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const [signInWithEmailAndPassword, user, loading, error] =
+    useSignInWithEmailAndPassword(auth);
+
+  const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Validação de usuário e senha
-    if (username.trim() === "" || password.trim() === "") {
-      setErrorMessage("Preencha todos os campos.");
-      return;
+    try {
+      // Validação de usuário e senha
+      if (email.trim() === "" || password.trim() === "") {
+        setErrorMessage("Preencha todos os campos.");
+        return;
+      }
+
+      // Feedback de sucesso ou erro
+      signInWithEmailAndPassword(email, password);
+
+      { user && navigate("/dashboard"); }
+
+      { error && setErrorMessage(error.message || "Usuário ou senha inválidos") }
+    } catch (error) {
+      setErrorMessage("Oops, algo deu errado.");
+      console.log(error);
     }
-
-    // Lógica de autenticação aqui
-
-    // Feedback de sucesso ou erro
-    setErrorMessage("Usuário ou senha incorretos.");
   };
 
   return (
@@ -36,13 +52,13 @@ export function SignIn() {
 
           <form onSubmit={handleSignIn}>
             <div className="input-group">
-              <label htmlFor="username">Usuário</label>
+              <label htmlFor="email">Usuário</label>
               <input
-                id="username"
+                id="email"
                 type="text"
                 placeholder="Usuário"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
 
@@ -58,12 +74,11 @@ export function SignIn() {
             </div>
 
             <button type="submit">
-              <span>Entrar</span>
+              {loading ? "Carregando..." : "Entrar"}
             </button>
           </form>
-          
+
           {errorMessage && <p className="error-message">{errorMessage}</p>}
-        
         </div>
       </main>
     </div>

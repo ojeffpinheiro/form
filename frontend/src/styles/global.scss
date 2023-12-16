@@ -1,10 +1,20 @@
 :root {
   --primary: #00B37E;
-  --background: #121214;
-  --text: #FFF;
+  --background-default: #121214;
+  --text-default: #FFF;
+  --text-secondary: #333;
+  --title: #004080;
   --caption: #8D8D99;
+  --red: #e83f5b;
+  --red-light: #f1948a;
+  --green: #2ecc71;
+  --green-light: #a9dfbf;  
   --gray: #E1E1E6;
+
+  --line: #dddddd;                    /* Cor das linhas e bordas */
+  --side-icon: #3498db; 
   --background-light: rgba(255, 255, 255, 0.05);
+  --overlay: rgba(0, 0, 0, 0.5);
 }
 
 * {
@@ -14,8 +24,8 @@
 }
 
 body {
-  background-color: var(--background);
-  color: var(--text);
+  background-color: var(--background-default);
+  color: var(--text-default);
 
   font-family: 'Poppins', sans-serif;
   -webkit-font-smoothing: antialiased;

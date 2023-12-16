@@ -6,7 +6,7 @@
 
   aside {
     flex: 7;
-    color: var(--text);
+    color: var(--text-default);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -42,17 +42,18 @@
     border-radius: 30px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 15px 30px;
-    background: var(--background);
+    background: var(--background-default);
     align-items: flex-start;
 
     strong {
+      color: var(--primary);
       font: 700 36px "Poppins", sans-serif;
       line-height: 42px;
       margin-top: 16px;
     }
 
     form {
-      margin: 60px 0;
+      margin: 2rem 0;
 
       .input-group {
         display: flex;
@@ -61,11 +62,17 @@
         align-items: flex-start;
       }
 
+      label {
+        font-size: 14px;
+        color: var(--text-default);
+        margin-bottom: 8px;
+      }
+
       input {
         height: 50px;
         border-radius: 8px;
         padding: 0 16px;
-        background: var(--text);
+        background: var(--text-default);
         border: 1px solid var(--caption);
         width: 100%;
         margin-bottom: 16px;
@@ -76,7 +83,7 @@
         border-radius: 8px;
         font-weight: bold;
         background: var(--primary);
-        color: var(--text);
+        color: var(--text-default);
         width: 100%;
         transition: filter 0.2s;
 
@@ -93,7 +100,7 @@
     }
 
     .error-message {
-      color: red;
+      color: var(--red);
       margin-top: -3rem;
     }
   }
