@@ -30,7 +30,7 @@ export function SignIn() {
       // Feedback de sucesso ou erro
       signInWithEmailAndPassword(email, password);
 
-      { user && navigate("/dashboard"); }
+      { user && navigate("/manager/dashboard"); }
 
       { error && setErrorMessage(error.message || "Usuário ou senha inválidos") }
     } catch (error) {

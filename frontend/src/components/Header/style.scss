@@ -1,0 +1,42 @@
+header {
+  background-color: var(--caption);
+  width: 100vw;
+  padding-top: 2rem;
+  padding-bottom: 3rem;
+
+  .content {
+    width: min(1440px, 90vw);
+    margin: 0 auto;
+
+    #top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      img {
+        max-width: 5rem;
+      }
+
+      #profile {
+        display: flex;
+        align-items: center;
+        color: var(--text);
+        text-decoration: none;
+        text-align: right;
+
+        strong {
+          font-size: 1.25rem;
+          line-height: 1.875rem;
+          margin-left: 1.25rem;
+          font-weight: 600;
+        }
+      }
+    }
+
+    .separator {
+      height: 1px;
+      background-color: var(--line);
+      margin: 1rem 0;      
+    }
+  }
+}

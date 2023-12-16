@@ -8,6 +8,7 @@ import { UserProps } from "../../../interfaces/auth";
 import { auth } from "../../../services/firebaseConfig";
 
 import UserRegistrationModal from "../../../components/UserRegistrationModal";
+import Header from "../../../components/Header";
 
 export default function Dashboard() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -32,7 +33,7 @@ export default function Dashboard() {
 
   return (
     <div id="page-manager-dashboard">
-      <h1>Dashboard Manager</h1>
+      <Header />
       <button
         onClick={handleOpenModal}>Adicionar Aluno</button>
       <UserRegistrationModal 
