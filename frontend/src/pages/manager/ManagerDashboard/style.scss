@@ -1,0 +1,30 @@
+#page-manager-dashboard {
+  main {
+    margin-top: -2.825rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 14rem;
+    gap: 1rem;
+  }
+
+  section {
+    margin-bottom: 20px;
+
+    h2 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+
+      li {
+        margin-bottom: 5px;
+        font-size: 1rem;
+      }
+    }
+  }
+}

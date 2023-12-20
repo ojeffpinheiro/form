@@ -12,3 +12,8 @@ export interface UserRegistrationModalProps {
   onClose: () => void;
   onRegister: (user: UserProps) => void;
 }
+
+export interface SessionProps {
+  title: string;
+  children: React.ReactNode;
+}

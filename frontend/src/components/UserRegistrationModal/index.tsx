@@ -48,7 +48,7 @@ const UserRegistrationModal = ({
     // Renderizar o modal apenas se isOpen for true
     isOpen && (
       <div className="modal-overlay">
-        <div className="modal">
+        <div className="modal animate-pop back">
           <h2>Cadastro de Usuário</h2>
           <form onSubmit={handleRegister} >
             <div className="input-group">

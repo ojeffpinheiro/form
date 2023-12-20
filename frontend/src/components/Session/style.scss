@@ -1,0 +1,25 @@
+.session {
+  margin: 10px;
+  width: 77vw
+}
+
+.session-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: var(--title);
+  border-radius: 1rem;
+  align-items: center;
+
+  button {
+    background-color: transparent;
+  }
+}
+
+.session-content {
+  padding: 10px;
+}
+
+.expanded {
+  height: auto;
+}
