@@ -1,10 +1,10 @@
 import { FaUserGraduate, FaSuitcaseRolling, FaTshirt, FaGlassCheers, FaBus, FaTicketAlt } from "react-icons/fa";
 
-import { EventsProps } from "../../interfaces/auth";
+import { EventProps } from "../../interfaces/auth";
 
 import "./style.scss";
 
-const EventCard = ({ name, value, type }: EventsProps) => {
+const EventCard = ({ name, value, type }: EventProps) => {
   const getEventIcon = () => {
     switch (type) {
       case "graduation":

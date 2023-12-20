@@ -7,7 +7,7 @@ import UserRegistrationModal from "../../../components/UserRegistrationModal";
 import Header from "../../../components/Header";
 import Session from "../../../components/Session";
 
-import { EventsProps, UserProps } from "../../../interfaces/auth";
+import { EventProps, UserProps } from "../../../interfaces/auth";
 
 import "./style.scss";
 import EventRegistrationModal from "../../../components/EventRegistrationModal";
@@ -16,7 +16,7 @@ export default function Dashboard() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalEventOpen, setIsModalEventOpen] = useState(false);
 
-  const entries: EventsProps[] = [
+  const entries: EventProps[] = [
     { type: "entry", name: "Rifa Dia das Mães", value: 300 },
     { type: "entry", name: "Rifa Festa Junina", value: 500 },
     { type: "entry", name: "Rifa Dia das Crianças", value: 500 },
@@ -24,7 +24,7 @@ export default function Dashboard() {
     { type: "entry", name: "Rifa Natal", value: 500 },
   ];
 
-  const expenses: EventsProps[] = [
+  const expenses: EventProps[] = [
     { type: "tshirt", name: "Camiseta", value: 1200 },
     { type: "graduation", name: "Formatura", value: 1200 },
     { type: "trip", name: "Passeio", value: 1200 },
@@ -62,7 +62,7 @@ export default function Dashboard() {
     }
   };
 
-  const handleRegisterEvent = (eventData: EventsProps) => {
+  const handleRegisterEvent = (eventData: EventProps) => {
     console.log(eventData);
   };
 
@@ -75,11 +75,11 @@ export default function Dashboard() {
           <Session
             title="Arrecadações"
             data={entries}
-            onClick={handleOpenModalEvent} />
+            onClickEventCard={handleOpenModalEvent} />
           <Session
             title="Eventos"
             data={expenses}
-            onClick={handleOpenModalEvent} />
+            onClickEventCard={handleOpenModalEvent} />
         </main>
 
         <EventRegistrationModal

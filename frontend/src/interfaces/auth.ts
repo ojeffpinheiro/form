@@ -16,10 +16,10 @@ export interface UserRegistrationModalProps {
 export interface EventRegistrationModalProps {
   isOpen: boolean;
   onClose: () => void;
-  addEvent: (event: EventsProps) => void;
+  addEvent: (event: EventProps) => void;
 }
 
-export interface EventsProps {
+export interface EventProps {
   name: string;
   type: string;
   value: number;
@@ -27,6 +27,6 @@ export interface EventsProps {
 
 export interface SessionProps {
   title: string;
-  data: Array<EventsProps>;
-  onClick: () => void;
+  data: Array<EventProps>;
+  onClickEventCard: () => void;
 }

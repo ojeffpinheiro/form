@@ -7,7 +7,7 @@ import { SessionProps } from "../../interfaces/auth";
 
 import "./style.scss"
 
-const Session: React.FC<SessionProps> = ({ title, data, onClick }) => {
+const Session: React.FC<SessionProps> = ({ title, data, onClickEventCard }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const handleToggle = () => {
@@ -31,7 +31,7 @@ const Session: React.FC<SessionProps> = ({ title, data, onClick }) => {
           {data.map((event, i) => (
             <EventCard key={i} {...event} />
           ))}
-          <button onClick={onClick}>
+          <button onClick={onClickEventCard}>
             <span><FaPlus size={25} /></span>
             <p>Adiconar Evento</p>
           </button>
