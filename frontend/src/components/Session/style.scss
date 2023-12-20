@@ -10,6 +10,11 @@
   background-color: var(--title);
   border-radius: 1rem;
   align-items: center;
+  cursor: pointer;
+
+  :hover {
+    filter: brightness(0.9);
+  }
 
   button {
     background-color: transparent;
@@ -21,6 +26,18 @@
   grid-template-columns: repeat(3, 1fr);
   padding-block: 1rem;
   gap: 5rem;
+
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    border: none;
+    border-radius: .75rem;
+    p {
+      font-size: 1.125rem;
+    }
+  }
 }
 
 .expanded {

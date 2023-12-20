@@ -10,24 +10,26 @@ import Session from "../../../components/Session";
 import { EventsProps, UserProps } from "../../../interfaces/auth";
 
 import "./style.scss";
+import EventRegistrationModal from "../../../components/EventRegistrationModal";
 
 export default function Dashboard() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalEventOpen, setIsModalEventOpen] = useState(false);
 
   const entries: EventsProps[] = [
-    { id: 1, type: "entry", name: "Rifa Dia das Mães", value: 300 },
-    { id: 2, type: "entry", name: "Rifa Festa Junina", value: 500 },
-    { id: 3, type: "entry", name: "Rifa Dia das Crianças", value: 500 },
-    { id: 4, type: "entry", name: "Rifa Dia dos Pais", value: 500 },
-    { id: 5, type: "entry", name: "Rifa Natal", value: 500 },
+    { type: "entry", name: "Rifa Dia das Mães", value: 300 },
+    { type: "entry", name: "Rifa Festa Junina", value: 500 },
+    { type: "entry", name: "Rifa Dia das Crianças", value: 500 },
+    { type: "entry", name: "Rifa Dia dos Pais", value: 500 },
+    { type: "entry", name: "Rifa Natal", value: 500 },
   ];
 
   const expenses: EventsProps[] = [
-    { id: 1, type: "expense", name: "Camiseta", value: 1200 },
-    { id: 2, type: "expense", name: "Formatura", value: 1200 },
-    { id: 2, type: "expense", name: "Passeio", value: 1200 },
-    { id: 2, type: "expense", name: "Cinema", value: 1200 },
-    { id: 2, type: "expense", name: "Confra", value: 1200 },
+    { type: "tshirt", name: "Camiseta", value: 1200 },
+    { type: "graduation", name: "Formatura", value: 1200 },
+    { type: "trip", name: "Passeio", value: 1200 },
+    { type: "outing", name: "Cinema", value: 1200 },
+    { type: "gathering", name: "Confra", value: 1200 },
   ];
 
   const [createUserWithEmailAndPassword, user, loading] =
@@ -41,6 +43,14 @@ export default function Dashboard() {
     setIsModalOpen(false);
   };
 
+  const handleOpenModalEvent = () => {
+    setIsModalEventOpen(true);
+  }
+
+  const handleCloseModalEvent = () => {
+    setIsModalEventOpen(false);
+  }
+
   const handleRegisterUser = async (userData: UserProps) => {
     try {
       const { email, password } = userData;
@@ -52,15 +62,30 @@ export default function Dashboard() {
     }
   };
 
+  const handleRegisterEvent = (eventData: EventsProps) => {
+    console.log(eventData);
+  };
+
   return (
     <div id="page-manager-dashboard">
       <div className="container">
         <Header onClick={handleOpenModal} />
 
         <main className="animate-up delay-2">
-          <Session title="Arrecadações" data={entries} />
-          <Session title="Eventos" data={expenses} />
+          <Session
+            title="Arrecadações"
+            data={entries}
+            onClick={handleOpenModalEvent} />
+          <Session
+            title="Eventos"
+            data={expenses}
+            onClick={handleOpenModalEvent} />
         </main>
+
+        <EventRegistrationModal
+          isOpen={isModalEventOpen}
+          onClose={handleCloseModalEvent}
+          addEvent={handleRegisterEvent} />
 
         <UserRegistrationModal
           isOpen={isModalOpen}

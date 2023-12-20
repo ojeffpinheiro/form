@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FaArrowCircleDown, FaArrowCircleUp } from "react-icons/fa";
+import { FaArrowDown, FaArrowUp, FaPlus } from "react-icons/fa";
 
 import EventCard from "../EventCard";
 
@@ -7,7 +7,7 @@ import { SessionProps } from "../../interfaces/auth";
 
 import "./style.scss"
 
-const Session: React.FC<SessionProps> = ({ title, data }) => {
+const Session: React.FC<SessionProps> = ({ title, data, onClick }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const handleToggle = () => {
@@ -16,21 +16,25 @@ const Session: React.FC<SessionProps> = ({ title, data }) => {
 
   return (
     <div className={`session ${isExpanded ? "expanded" : ""}`}>
-      <div className="session-header">
+      <div className="session-header" onClick={handleToggle}>
         <h2>{title}</h2>
-        <button onClick={handleToggle}>
+        <button>
           {isExpanded ? (
-            <FaArrowCircleUp color="var(--primary)" size={40} />
+            <FaArrowUp color="var(--primary)" size={25} />
           ) : (
-            <FaArrowCircleDown color="var(--primary)" size={40} />
+            <FaArrowDown color="var(--primary)" size={25} />
           )}
         </button>
       </div>
       {isExpanded && (
         <div className="session-content">
-          {data.map((event) => (
-            <EventCard key={event.id} {...event} />
+          {data.map((event, i) => (
+            <EventCard key={i} {...event} />
           ))}
+          <button onClick={onClick}>
+            <span><FaPlus size={25} /></span>
+            <p>Adiconar Evento</p>
+          </button>
         </div>
       )}
     </div>
