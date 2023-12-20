@@ -1,29 +1,34 @@
 import { useState } from "react";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 
-import { UserProps } from "../../../interfaces/auth";
-import { EntryProps, ExpenseProps } from "../../../interfaces/entities";
-
 import { auth } from "../../../services/firebaseConfig";
 
 import UserRegistrationModal from "../../../components/UserRegistrationModal";
 import Header from "../../../components/Header";
+import Session from "../../../components/Session";
+
+import { EventsProps, UserProps } from "../../../interfaces/auth";
 
 import "./style.scss";
-import Session from "../../../components/Session/inde";
 
 export default function Dashboard() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const entries = [
-    { id: 1, name: "Rifa Festa Junina", amount: 300 },
-    { id: 2, name: "Rifa Dia das Mães", amount: 500 },
-  ] as EntryProps[];
+  const entries: EventsProps[] = [
+    { id: 1, type: "entry", name: "Rifa Dia das Mães", value: 300 },
+    { id: 2, type: "entry", name: "Rifa Festa Junina", value: 500 },
+    { id: 3, type: "entry", name: "Rifa Dia das Crianças", value: 500 },
+    { id: 4, type: "entry", name: "Rifa Dia dos Pais", value: 500 },
+    { id: 5, type: "entry", name: "Rifa Natal", value: 500 },
+  ];
 
-  const expenses = [
-    { id: 1, name: "Formatura", value: 1200 },
-    { id: 2, name: "Passeio", value: 1200 },
-  ] as ExpenseProps[];
+  const expenses: EventsProps[] = [
+    { id: 1, type: "expense", name: "Camiseta", value: 1200 },
+    { id: 2, type: "expense", name: "Formatura", value: 1200 },
+    { id: 2, type: "expense", name: "Passeio", value: 1200 },
+    { id: 2, type: "expense", name: "Cinema", value: 1200 },
+    { id: 2, type: "expense", name: "Confra", value: 1200 },
+  ];
 
   const [createUserWithEmailAndPassword, user, loading] =
     useCreateUserWithEmailAndPassword(auth);
@@ -36,10 +41,10 @@ export default function Dashboard() {
     setIsModalOpen(false);
   };
 
-  const handleRegisterUser = (userData: UserProps) => {
+  const handleRegisterUser = async (userData: UserProps) => {
     try {
       const { email, password } = userData;
-      createUserWithEmailAndPassword(email, password);
+      await createUserWithEmailAndPassword(email, password);
       console.log(user);
     } catch (error) {
       console.log("Error registering user", error);
@@ -47,34 +52,14 @@ export default function Dashboard() {
     }
   };
 
-  const renderEntries = () => {
-    return (
-      <ul>
-        {entries.map((entry) => (
-          <li key={entry.id}>{entry.name}</li>
-        ))}
-      </ul>
-    );
-  };
-
-  const renderExpenses = () => {
-    return (
-      <ul>
-        {expenses.map((expense) => (
-          <li key={expense.id}>{expense.name}</li>
-        ))}
-      </ul>
-    );
-  }
-
   return (
     <div id="page-manager-dashboard">
       <div className="container">
         <Header onClick={handleOpenModal} />
 
         <main className="animate-up delay-2">
-          <Session title="Arrecadações" children={renderEntries()} />
-          <Session title="Eventos" children={renderExpenses()} />
+          <Session title="Arrecadações" data={entries} />
+          <Session title="Eventos" data={expenses} />
         </main>
 
         <UserRegistrationModal

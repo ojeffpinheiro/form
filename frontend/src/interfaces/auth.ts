@@ -13,7 +13,14 @@ export interface UserRegistrationModalProps {
   onRegister: (user: UserProps) => void;
 }
 
+export interface EventsProps {
+  id: number;
+  name: string;
+  type: string;
+  value: number;
+}
+
 export interface SessionProps {
   title: string;
-  children: React.ReactNode;
+  data: Array<EventsProps>;
 }

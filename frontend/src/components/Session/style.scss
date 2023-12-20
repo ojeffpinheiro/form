@@ -17,7 +17,10 @@
 }
 
 .session-content {
-  padding: 10px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding-block: 1rem;
+  gap: 5rem;
 }
 
 .expanded {
